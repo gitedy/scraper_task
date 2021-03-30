@@ -1,0 +1,29 @@
+.img {
+    width: 100px;
+    height: 100px;
+}
+
+#products {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    column-gap: 5px;
+}
+
+.product {
+    padding: 10px;
+    text-align: center;
+    border: 1px solid #000;
+    border-radius: 5%;
+    width: 200px;
+}
+
+#wrapper {
+    margin: auto;
+    width: 50%
+}
+
+#productDetail {
+    padding: 10px;
+    text-align: center;
+    border: 1px solid #000;
+}

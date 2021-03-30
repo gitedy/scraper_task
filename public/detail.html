@@ -1,0 +1,62 @@
+<head>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<div id="wrapper">
+
+    <div id="productDetail">
+
+    </div>
+</div>
+
+<script>
+    var url = new URL(location.href);
+    var c = url.searchParams.get("id");
+    console.log(c);
+
+    let urls = "http://localhost:3000/getDetails";
+    let data = {
+        id: c
+    }
+    console.log(data)
+    let params = {
+        headers: {
+            "content-type": "application/json; charset=UTF-8"
+        },
+        body: JSON.stringify(data),
+        method: "POST"
+    }
+    fetch(urls, params)
+        .then(function(data) {
+            return data.json();
+        })
+        .then(function(res) {
+            console.log(res)
+            loadProduct(res.data)
+        })
+
+
+    function loadProduct(data) {
+
+        let elem = id('productDetail')
+        let name = document.createElement("p");
+        let price = document.createElement("p");
+        let summary = document.createElement("p");
+        let rating = document.createElement("p");
+        let img = document.createElement("img");
+        img.src = data.icon
+        img.classList.add('img')
+        name.textContent = data.title
+        price.textContent = "Price: " + data.priceText
+        summary.textContent = "Details: " + data.summary
+        rating.textContent = "Rating : " + data.scoreText
+        elem.appendChild(img);
+        elem.appendChild(name);
+        elem.appendChild(price);
+        elem.appendChild(rating);
+        elem.appendChild(summary);
+    }
+
+    function id(id) {
+        return document.getElementById(id)
+    }
+</script>
